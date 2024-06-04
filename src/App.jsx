@@ -3,26 +3,28 @@ import Sidebar from "./Components/Sidebar";
 import NewProject from "./Components/NewProject";
 import NoProjectSelected from "./Components/NoProjectSelected";
 
-function App() {
-  const [projects, setProjects] = useState([
-    {
-      title: "Project 1",
-      description: "placeholder text",
-      dueDate: "2024-04-06",
-      tasks: ["Task 1", "Task 2", "Task 3"],
-    },
-    {
-      title: "Project 2",
-      description: "some more text thats placeholder",
-      dueDate: "2024-04-26",
-      tasks: ["Task 1", "Task 2"],
-    },
-  ]);
+const tempProjects = [
+  {
+    id: 0,
+    title: "Project 1",
+    description: "placeholder text",
+    dueDate: "2024-07-06",
+    tasks: ["Task 1", "Task 2", "Task 3"],
+  },
+  {
+    id: 1,
+    title: "Project 2",
+    description: "some more text thats placeholder",
+    dueDate: "2024-06-26",
+    tasks: ["Task 1", "Task 2"],
+  },
+];
 
+function App() {
   const [projectsState, SetProjectsState] = useState({
     // undefined=Nothing selected, null=Creating new, 0-999=Project selected.
     selectedProjectId: undefined,
-    projects: [],
+    projects: tempProjects,
   });
 
   function handleStartAddProject() {
@@ -30,6 +32,15 @@ function App() {
       return {
         ...prevState,
         selectedProjectId: null,
+      };
+    });
+  }
+
+  function handleCancelAddProject() {
+    SetProjectsState((prevState) => {
+      return {
+        ...prevState,
+        selectedProjectId: undefined,
       };
     });
   }
@@ -52,7 +63,12 @@ function App() {
   let content;
 
   if (projectsState.selectedProjectId === null) {
-    content = <NewProject onAddProject={handleAddProject} />;
+    content = (
+      <NewProject
+        onAddProject={handleAddProject}
+        onCancel={handleCancelAddProject}
+      />
+    );
   }
   if (projectsState.selectedProjectId === undefined) {
     content = <NoProjectSelected onStartAddProject={handleStartAddProject} />;
