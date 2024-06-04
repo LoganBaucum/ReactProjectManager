@@ -139,8 +139,6 @@ function App() {
     content = <NoProjectSelected onStartAddProject={handleStartAddProject} />;
   }
 
-  console.log(projectsState);
-
   return (
     <main className="h-screen my-8 flex gap-8">
       <Sidebar
