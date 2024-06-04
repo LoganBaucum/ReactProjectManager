@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Sidebar from "./Components/Sidebar";
+import NewProject from "./Components/NewProject";
 
 function App() {
   const [projects, setProjects] = useState([
@@ -20,8 +21,9 @@ function App() {
   const [selectedProject, SetSelectedProject] = useState();
 
   return (
-    <main className="h-screen my-8">
+    <main className="h-screen my-8 flex gap-8">
       <Sidebar />
+      <NewProject />
     </main>
   );
 }
