@@ -1,8 +1,12 @@
 import Button from "./Button";
+import Tasks from "./Tasks";
 
 export default function SelectedProject({
   project,
+  tasks,
   onDeleteProject,
+  onAddTask,
+  onDeleteTask,
   ...props
 }) {
   const formattedDate = new Date(project.dueDate).toLocaleDateString("en-US", {
@@ -10,6 +14,10 @@ export default function SelectedProject({
     month: "short",
     day: "numeric",
   });
+  const filteredTasks = tasks.filter((task) => task.projectId === project.id);
+  console.log("FILTERED TASKS");
+  console.log(filteredTasks);
+
   return (
     <div className="w-[35rem] mt-16">
       <header className="pb-4 mb-4 border-b-2 border-stone-300">
@@ -22,9 +30,12 @@ export default function SelectedProject({
           {project.description}
         </p>
       </header>
-      <div>
-        <h1 className="text-xl font-semibold text-stone-600">Tasks</h1>
-      </div>
+      <Tasks
+        tasks={filteredTasks}
+        onAddTask={onAddTask}
+        onDeleteTask={onDeleteTask}
+        selectedProjectId={project.id}
+      />
     </div>
   );
 }
