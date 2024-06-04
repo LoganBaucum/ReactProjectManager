@@ -15,8 +15,6 @@ export default function SelectedProject({
     day: "numeric",
   });
   const filteredTasks = tasks.filter((task) => task.projectId === project.id);
-  console.log("FILTERED TASKS");
-  console.log(filteredTasks);
 
   return (
     <div className="w-[35rem] mt-16">
