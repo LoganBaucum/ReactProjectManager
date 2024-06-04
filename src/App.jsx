@@ -85,7 +85,6 @@ function App() {
   const selectedProject = projectsState.projects.find(
     (project) => project.id === projectsState.selectedProjectId
   );
-  console.log(selectedProject);
 
   let content = (
     <SelectedProject
