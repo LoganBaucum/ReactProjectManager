@@ -19,7 +19,7 @@ export default function SelectedProject({ project, ...props }) {
         </p>
       </header>
       <div>
-        <h1>Tasks</h1>
+        <h1 className="text-xl font-semibold text-stone-600">Tasks</h1>
       </div>
     </div>
   );
